@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class ValidateUsername {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your username: ");
+        String username = scanner.nextLine();
+        boolean isValid = true;
+
+        for (int i = 0; i < username.length(); i++) {
+            char c = username.charAt(i);
+            if (!Character.isLetterOrDigit(c)) {
+                isValid = false;
+                break;
+            }
+        }
+
+        if (isValid) {
+            System.out.println("The username is valid.");
+        } else {
+            System.out.println("The username is not valid.");
+        }
+    }
+}
