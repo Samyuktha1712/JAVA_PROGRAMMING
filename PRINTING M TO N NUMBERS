@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class SkipNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the starting number (m): ");
+        int m = scanner.nextInt();
+        System.out.print("Enter the ending number (n): ");
+        int n = scanner.nextInt();
+        System.out.print("Enter the step number (k): ");
+        int k = scanner.nextInt();
+        if (m > n) {
+            System.out.println("Invalid range. The starting number (m) should be less than or equal to the ending number (n).");
+        } else if (k <= 0) {
+            System.out.println("The step number (k) should be greater than 0.");
+        } else {
+            for (int i = m; i <= n; i += k) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+}
