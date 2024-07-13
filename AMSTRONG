@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class Armstrong
+{
+    public static void main(String args[])
+    {
+        int rem,sum=0,n,num;
+        Scanner scan=new Scanner(System.in);
+        System.out.println("value of n");
+        n=scan.nextInt();
+        num=n;
+        while(num!=0)
+        {
+            rem=num%10;
+            sum=sum+(rem*rem*rem);
+            num/=10;
+            
+        }
+    System.out.println(sum);
+    if(n==sum)
+    {
+        System.out.println("THE GIVEN NUMBER IS ARMSTRONG");
+    }
+    else
+    {
+       System.out.println("THE GIVEN NUMBER IS  NOT ARMSTRONG"); 
+    }
+        
+        
+    }
+}
