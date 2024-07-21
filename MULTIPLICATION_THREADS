@@ -1,0 +1,67 @@
+class MultiplicationTable implements Runnable {
+    private int number;
+
+    // Constructor to initialize the number for which table is to be printed
+    public MultiplicationTable(int number) {
+        this.number = number;
+    }
+
+    // The run method contains the code that is executed when the thread starts
+    @Override
+    public void run() {
+        System.out.println("Thread for number " + number + " is in RUNNABLE state.");
+        printTable();
+        System.out.println("Thread for number " + number + " has TERMINATED.");
+    }
+
+    // Method to print the multiplication table of the given number
+    private void printTable() {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(number + " * " + i + " = " + (number * i));
+            try {
+                // Sleep for a short period to simulate work and to observe thread states
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                System.out.println("Thread for number " + number + " was interrupted.");
+            }
+        }
+    }
+}
+
+public class MultiplicationTableDemo {
+    public static void main(String[] args) {
+        // Creating Runnable objects for multiplication tables
+        Runnable tableOf5 = new MultiplicationTable(5);
+        Runnable tableOf10 = new MultiplicationTable(10);
+
+        // Creating threads for each multiplication table
+        Thread thread1 = new Thread(tableOf5);
+        Thread thread2 = new Thread(tableOf10);
+
+        // Displaying the NEW state of threads
+        System.out.println("Thread1 state: " + thread1.getState());
+        System.out.println("Thread2 state: " + thread2.getState());
+
+        // Starting the threads (moves them to RUNNABLE state)
+        thread1.start();
+        thread2.start();
+
+        // Displaying the state of threads after starting them
+        System.out.println("Thread1 state after start: " + thread1.getState());
+        System.out.println("Thread2 state after start: " + thread2.getState());
+
+        try {
+            // Waiting for threads to complete (TERMINATED state)
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            System.out.println("Main thread was interrupted.");
+        }
+
+        // Displaying the state of threads after completion
+        System.out.println("Thread1 state after join: " + thread1.getState());
+        System.out.println("Thread2 state after join: " + thread2.getState());
+
+        System.out.println("Main thread has TERMINATED.");
+    }
+}
