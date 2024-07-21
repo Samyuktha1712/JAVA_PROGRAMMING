@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class SumOfNNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input the size of the array (N)
+        System.out.print("Enter the number of elements (N): ");
+        int N = scanner.nextInt();
+
+        // Initialize the array
+        int[] numbers = new int[N];
+
+        // Input elements into the array
+        System.out.println("Enter the " + N + " numbers:");
+        for (int i = 0; i < N; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+
+        // Variable to store the sum of the elements
+        int sum = 0;
+
+        // Loop to calculate the sum and intentionally go beyond the array size
+        try {
+            for (int i = 0; i <= N; i++) { // Intentionally use <= N to cause ArrayIndexOutOfBoundsException
+                sum += numbers[i];
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Exception caught: " + e);
+        }
+
+        // Print the sum of the elements
+        System.out.println("Sum of the elements: " + sum);
+
+        // Close the scanner
+        scanner.close();
+    }
+}
