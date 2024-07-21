@@ -1,0 +1,42 @@
+class Fibonacci implements Runnable {
+    private int count;
+    public Fibonacci(int count) {
+        this.count = count;
+    }
+    @Override
+    public void run() {
+        System.out.println("Fibonacci series for " + count + " terms:");
+        generateFibonacci(count);
+    }
+    private void generateFibonacci(int count) {
+        int n1 = 0, n2 = 1;
+        int n3;
+        System.out.print(n1 + " " + n2);
+
+        for (int i = 2; i < count; ++i) {
+            n3 = n1 + n2;
+            System.out.print(" " + n3);
+            n1 = n2;
+            n2 = n3;
+        }
+        System.out.println(); 
+    }
+}
+
+public class FibonacciDemo {
+    public static void main(String[] args) {
+        int terms = 10; 
+        Runnable fibonacciTask = new Fibonacci(terms);
+        Thread fibonacciThread = new Thread(fibonacciTask);
+        fibonacciThread.start();
+
+        try {
+            
+            fibonacciThread.join();
+        } catch (InterruptedException e) {
+            System.out.println("Main thread was interrupted.");
+        }
+
+        System.out.println("Main thread has terminated.");
+    }
+}
