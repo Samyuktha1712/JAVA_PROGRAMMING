@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class NumberSquareArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        // Create a 2D array where each sub-array will hold the number and its square
+        int[][] numberSquareArray = new int[n][2];
+
+        // Fill the array with numbers and their squares
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter number " + (i + 1) + ": ");
+            int number = scanner.nextInt();
+            numberSquareArray[i][0] = number;
+            numberSquareArray[i][1] = number * number;
+        }
+
+        // Display the array
+        System.out.println("Number and their squares:");
+        for (int i = 0; i < n; i++) {
+            System.out.println("Number: " + numberSquareArray[i][0] + ", Square: " + numberSquareArray[i][1]);
+        }
+
+        scanner.close();
+    }
+}
