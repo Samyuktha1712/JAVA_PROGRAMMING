@@ -1,0 +1,33 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class UniquePermutations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        String number = scanner.nextLine();
+
+        Set<String> permutations = new HashSet<>();
+        generatePermutations(number, "", permutations);
+
+        System.out.println("Unique permutations of " + number + ":");
+        for (String perm : permutations) {
+            System.out.println(perm);
+        }
+
+        scanner.close();
+    }
+
+    private static void generatePermutations(String str, String prefix, Set<String> permutations) {
+        int n = str.length();
+        if (n == 0) {
+            permutations.add(prefix);
+        } else {
+            for (int i = 0; i < n; i++) {
+                generatePermutations(str.substring(0, i) + str.substring(i + 1), prefix + str.charAt(i), permutations);
+            }
+        }
+    }
+}
